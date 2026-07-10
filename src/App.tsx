@@ -24,10 +24,10 @@ function App() {
           <Hero />
           <Services />
           <Process />
-          <QuoteTool />
           <Reviews />
           <ServiceArea />
           <FAQ />
+          <QuoteTool />
           <FinalCTA />
         </main>
         <Footer />
