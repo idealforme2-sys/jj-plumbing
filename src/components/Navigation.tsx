@@ -57,6 +57,12 @@ export default function Navigation() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => handleNav("#quote")}
+            className="hidden sm:flex items-center gap-2 rounded-full bg-accent text-primary font-bold text-sm px-4 py-2 hover:bg-accent-hover transition-colors"
+          >
+            Get Estimate
+          </button>
           <a
             href="tel:5555575862"
             className="hidden sm:flex items-center gap-2 rounded-full border border-accent/40 text-accent font-semibold text-sm px-4 py-2 hover:bg-accent hover:text-primary transition-colors"
@@ -94,10 +100,16 @@ export default function Navigation() {
                   </button>
                 </li>
               ))}
-              <li className="pt-2">
+              <li className="pt-2 flex flex-col gap-2">
+                <button
+                  onClick={() => handleNav("#quote")}
+                  className="w-full flex items-center justify-center gap-2 rounded-full bg-accent text-primary font-bold text-sm px-4 py-3"
+                >
+                  Get Estimate
+                </button>
                 <a
                   href="tel:5555575862"
-                  className="flex items-center justify-center gap-2 rounded-full bg-accent text-primary font-bold text-sm px-4 py-3"
+                  className="w-full flex items-center justify-center gap-2 rounded-full border border-white/10 text-white font-semibold text-sm px-4 py-3"
                 >
                   <Phone size={15} />
                   Call (555) JJ-PLUMB
