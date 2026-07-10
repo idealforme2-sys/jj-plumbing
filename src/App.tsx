@@ -5,6 +5,7 @@ import { Hero } from "./components/Hero";
 import { Services } from "./components/Services";
 import { Process } from "./components/Process";
 import QuoteTool from "./components/QuoteTool";
+import { Guarantee } from "./components/Guarantee";
 import Reviews from "./components/Reviews";
 import ServiceArea from "./components/ServiceArea";
 import FAQ from "./components/FAQ";
@@ -27,6 +28,7 @@ function App() {
           <ServiceArea />
           <FAQ />
           <QuoteTool />
+          <Guarantee />
         </main>
         <Footer />
         <MobileStickyCTA />
