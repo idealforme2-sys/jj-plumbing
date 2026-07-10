@@ -8,7 +8,6 @@ import QuoteTool from "./components/QuoteTool";
 import Reviews from "./components/Reviews";
 import ServiceArea from "./components/ServiceArea";
 import FAQ from "./components/FAQ";
-import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 import MobileStickyCTA from "./components/MobileStickyCTA";
 
@@ -28,7 +27,6 @@ function App() {
           <ServiceArea />
           <FAQ />
           <QuoteTool />
-          <FinalCTA />
         </main>
         <Footer />
         <MobileStickyCTA />
