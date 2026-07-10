@@ -1,9 +1,9 @@
 import { useState } from "react";
 import CinematicEntrance from "./components/CinematicEntrance";
 import Navigation from "./components/Navigation";
-import Hero from "./components/Hero";
-import SignatureServices from "./components/SignatureServices";
-import HowItWorks from "./components/HowItWorks";
+import { Hero } from "./components/Hero";
+import { Services } from "./components/Services";
+import { Process } from "./components/Process";
 import QuoteTool from "./components/QuoteTool";
 import Reviews from "./components/Reviews";
 import ServiceArea from "./components/ServiceArea";
@@ -22,8 +22,8 @@ function App() {
         <Navigation />
         <main>
           <Hero />
-          <SignatureServices />
-          <HowItWorks />
+          <Services />
+          <Process />
           <QuoteTool />
           <Reviews />
           <ServiceArea />

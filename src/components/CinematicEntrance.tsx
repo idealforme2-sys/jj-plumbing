@@ -63,7 +63,7 @@ export default function CinematicEntrance({ onDone }: { onDone: () => void }) {
                 </motion.span>
                 <h1
                   className="text-4xl sm:text-6xl md:text-8xl font-extrabold text-white tracking-tight"
-                  style={{ filter: "drop-shadow(0 6px 22px rgba(132,204,22,0.45))" }}
+                  style={{ filter: "drop-shadow(0 6px 22px rgba(131,201,91,0.45))" }}
                 >
                   JJ PLUMBING
                 </h1>
@@ -84,7 +84,7 @@ export default function CinematicEntrance({ onDone }: { onDone: () => void }) {
 
           <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-secondary">
             <motion.div
-              className="h-full bg-accent shadow-[0_0_15px_#84CC16]"
+              className="h-full bg-accent shadow-[0_0_15px_#83c95b]"
               style={{ width: `${progress}%` }}
               transition={{ ease: "linear" }}
             />
