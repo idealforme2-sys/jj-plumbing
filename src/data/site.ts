@@ -5,7 +5,7 @@ export const brand = {
   line: 'Reliable. Honest. Quality.',
   phone: '(555) 557-5862',
   phoneHref: 'tel:5555575862',
-  logo: '/assets/JJPLB.png',
+  logo: '/JJPLB.jpg',
 };
 
 export const services = [

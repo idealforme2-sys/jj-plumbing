@@ -136,7 +136,7 @@ export function Hero() {
           <div className="relative rounded-[32px] p-1.5 bg-gradient-to-br from-copper via-copper/40 to-transparent">
             <div className="relative rounded-[28px] overflow-hidden bg-secondary border border-white/10 aspect-[4/5] md:aspect-[4/5]">
               <img
-                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200&auto=format&fit=crop"
+                src="/JJPLB.jpg"
                 alt="Technician performing a clean, precise pipe repair"
                 className="absolute inset-0 w-full h-full object-cover"
               />

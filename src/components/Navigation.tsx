@@ -4,7 +4,7 @@ import { Droplet, Phone, Menu, X } from "lucide-react";
 
 const LINKS = [
   { label: "Services", href: "#services" },
-  { label: "How It Works", href: "#how-it-works" },
+  { label: "How It Works", href: "#process" },
   { label: "Get a Quote", href: "#quote" },
   { label: "Reviews", href: "#reviews" },
   { label: "Service Area", href: "#service-area" },

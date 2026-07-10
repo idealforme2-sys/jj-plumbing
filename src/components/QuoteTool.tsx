@@ -96,6 +96,7 @@ export default function QuoteTool() {
 
   return (
     <section id="quote" className="relative py-24 bg-[#0b1012]">
+      <div id="quote-tool" className="absolute -top-20" />
       {/* Visual background details */}
       <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
       <div className="site-grid absolute inset-0 opacity-10 pointer-events-none" />
