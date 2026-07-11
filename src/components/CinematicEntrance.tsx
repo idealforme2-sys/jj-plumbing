@@ -1,107 +1,88 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { brand } from '../data/site';
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { brand } from "../data/site";
 
-const LOAD_DURATION = 1500; // 1.5 seconds max
+const LOAD_DURATION = 1600;
+const STEPS = ["🔧", "💧", "🚿", "✅"];
 
 export default function CinematicEntrance({ onDone }: { onDone: () => void }) {
   const [exiting, setExiting] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    // If user prefers reduced motion, just show it briefly then exit
-    const duration = prefersReducedMotion ? 500 : LOAD_DURATION;
-    
-    const timer = setTimeout(() => {
+    const timer = window.setTimeout(() => {
       setExiting(true);
-      setTimeout(onDone, 500); // 500ms fade out transition
-    }, duration);
-    
-    return () => clearTimeout(timer);
+      window.setTimeout(onDone, 420);
+    }, prefersReducedMotion ? 500 : LOAD_DURATION);
+
+    return () => window.clearTimeout(timer);
   }, [onDone, prefersReducedMotion]);
 
   return (
     <AnimatePresence>
       {!exiting && (
         <motion.div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0b1012] overflow-hidden"
+          className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-[#0b1012]"
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.42, ease: "easeInOut" }}
         >
-          {prefersReducedMotion ? (
-            // Static fallback for reduced motion
-            <div className="flex flex-col items-center">
-              <img src={brand.logo} alt="JJ Plumbing" className="h-16 w-16 mb-4 object-contain" />
-              <h1 className="text-xl font-extrabold text-white tracking-[0.2em] uppercase">JJ Plumbing</h1>
-              <p className="mt-2 text-xs text-[#83c95b]">Getting everything flowing...</p>
-            </div>
-          ) : (
-            // Full Plumbing Animation Sequence
-            <div className="relative z-10 flex flex-col items-center">
-              
-              {/* Brand Logo */}
-              <motion.img
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                src={brand.logo}
-                alt="JJ Plumbing"
-                className="h-14 w-14 object-contain mb-8"
-              />
+          <div aria-hidden className="absolute inset-0 bg-dots opacity-[0.12]" />
+          <div aria-hidden className="absolute inset-x-0 top-0 h-1 bg-[#EA580C]" />
 
-              {/* Pipe & Water Animation Container */}
-              <div className="relative w-48 h-20 flex flex-col items-center">
-                
-                {/* The Pipe (Empty) */}
-                <motion.div 
-                  className="w-full h-[3px] bg-white/10 rounded-full overflow-hidden relative"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                >
-                  {/* The Water Filling */}
-                  <motion.div 
-                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#0EA5E9] to-[#83c95b]"
-                    initial={{ width: "0%" }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 0.5, delay: 0.3, ease: "easeInOut" }}
-                  />
-                </motion.div>
+          <motion.div
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 16, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="relative z-10 flex w-[min(86vw,420px)] flex-col items-center rounded-2xl border border-white/10 bg-[#101719]/95 p-8 text-center shadow-2xl shadow-black/45"
+          >
+            <img
+              src={brand.logo}
+              alt="JJ Plumbing"
+              className="h-24 w-24 rounded-2xl bg-white object-contain p-2 shadow-xl shadow-black/35"
+            />
 
-                {/* The Droplet falling from the center of the pipe */}
-                <motion.div 
-                  className="absolute top-[3px] w-2 h-2 rounded-full bg-[#83c95b]"
-                  initial={{ opacity: 0, y: 0, scale: 0 }}
-                  animate={{ opacity: [0, 1, 1, 0], y: [0, 0, 40, 45], scale: [0, 1, 1, 0.5] }}
-                  transition={{ duration: 0.6, delay: 0.7, ease: "easeIn" }}
-                />
+            <h1 className="mt-5 font-heading text-2xl font-black uppercase tracking-[0.16em] text-white">
+              JJ Plumbing
+            </h1>
+            <p className="mt-2 text-[11px] font-extrabold uppercase tracking-[0.22em] text-[#83c95b]">
+              Getting everything flowing
+            </p>
 
-                {/* The Ripple on the ground */}
-                <motion.div 
-                  className="absolute top-[42px] w-8 h-2 rounded-full border border-[#83c95b]"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: [0, 0, 0.8, 0], scale: [0.2, 0.2, 2, 2.5] }}
-                  transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}
-                />
-              </div>
-
-              {/* Typography Branding */}
+            <div className="relative mt-7 w-full px-3">
+              <div className="absolute left-8 right-8 top-1/2 h-2 -translate-y-1/2 overflow-hidden rounded-full bg-white/10" />
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="text-center -mt-2"
-              >
-                <h1 className="text-base md:text-lg font-extrabold text-white tracking-[0.2em] uppercase">
-                  JJ Plumbing
-                </h1>
-                <p className="mt-2 text-[11px] uppercase tracking-[0.2em] text-[#83c95b] font-medium">
-                  Getting everything flowing...
-                </p>
-              </motion.div>
-
+                aria-hidden
+                className="absolute left-8 right-8 top-1/2 h-2 origin-left -translate-y-1/2 rounded-full bg-gradient-to-r from-[#83c95b] via-[#d9a537] to-[#EA580C]"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: prefersReducedMotion ? 0.25 : 1.25, ease: "easeInOut" }}
+              />
+              {!prefersReducedMotion && (
+                <motion.div
+                  aria-hidden
+                  className="absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-[#EA580C] shadow-[0_0_18px_rgba(234,88,12,.75)]"
+                  initial={{ left: "10%" }}
+                  animate={{ left: "88%" }}
+                  transition={{ duration: 1.15, ease: "easeInOut" }}
+                />
+              )}
+              <div className="relative flex items-center justify-between">
+                {STEPS.map((step, index) => (
+                  <motion.span
+                    key={step}
+                    initial={prefersReducedMotion ? false : { opacity: 0.45, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.18, duration: 0.25 }}
+                    className="grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-[#0b1012] text-2xl"
+                  >
+                    {step}
+                  </motion.span>
+                ))}
+              </div>
             </div>
-          )}
+
+            <p className="mt-7 text-xs font-semibold text-white/55">Loading your service experience...</p>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

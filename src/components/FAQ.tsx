@@ -35,11 +35,10 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="relative overflow-hidden bg-secondary/40 pt-18 pb-16 md:pt-24 md:pb-22">
-      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-copper" />
+    <section id="faq" className="relative overflow-hidden bg-secondary/40 py-16 md:py-20">
       <div aria-hidden className="absolute inset-0 bg-dots opacity-[0.08]" />
 
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[0.78fr_1.22fr] lg:gap-14">
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-5 md:px-8 lg:grid-cols-[0.76fr_1.24fr] lg:gap-12">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <p className="section-kicker">Questions</p>
           <h2 className="section-title max-w-xl">Frequently Asked Questions</h2>
@@ -47,7 +46,7 @@ export default function FAQ() {
             Quick answers about pricing, warranties, video diagnostics, emergency arrival windows, and what to expect before work begins.
           </p>
 
-          <div className="mt-8 rounded-lg border border-white/10 bg-primary/70 p-5">
+          <div className="mt-7 rounded-lg border border-white/10 bg-primary/70 p-5">
             <div className="mb-4 h-1 w-12 rounded-full bg-copper" />
             <p className="text-sm font-extrabold text-white">Still have a question?</p>
             <p className="mt-1 text-sm text-text-muted">Talk to a local plumbing dispatcher.</p>
@@ -61,7 +60,7 @@ export default function FAQ() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2.5">
           {FAQS.map((f, i) => {
             const isOpen = open === i;
             const Icon = f.icon;
@@ -72,7 +71,7 @@ export default function FAQ() {
                 className={[
                   "relative overflow-hidden rounded-lg border transition-colors",
                   isOpen
-                    ? "border-accent/35 bg-[#10191b]"
+                    ? "border-accent/35 bg-[#10191b] shadow-lg shadow-black/20"
                     : "border-white/10 bg-[#101619] hover:border-accent/25",
                 ].join(" ")}
               >
@@ -80,10 +79,15 @@ export default function FAQ() {
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-center gap-4 px-4 py-4 text-left md:px-5 md:py-5"
+                  className="flex w-full items-center gap-4 px-4 py-3.5 text-left md:px-5 md:py-4"
                   aria-expanded={isOpen}
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-accent">
+                  <span
+                    className={[
+                      "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors",
+                      isOpen ? "border-copper/40 bg-copper/10 text-copper" : "border-white/10 bg-white/[0.04] text-accent",
+                    ].join(" ")}
+                  >
                     <Icon size={18} />
                   </span>
                   <span className="min-w-0 flex-1">
@@ -110,7 +114,7 @@ export default function FAQ() {
                       transition={{ duration: 0.24, ease: "easeOut" }}
                       className="overflow-hidden"
                     >
-                      <p className="px-4 pb-5 pl-[4.75rem] text-sm leading-7 text-text-muted md:px-5 md:pb-6 md:pl-[5.25rem]">
+                      <p className="px-4 pb-5 pl-[4.75rem] text-sm leading-7 text-text-muted md:px-5 md:pl-[5.25rem]">
                         {f.a}
                       </p>
                     </motion.div>
