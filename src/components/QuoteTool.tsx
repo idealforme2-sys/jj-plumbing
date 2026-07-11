@@ -102,8 +102,16 @@ export default function QuoteTool() {
       <div id="quote-tool" className="absolute -top-20" />
       <div className="section-divider" />
       <div className="site-grid absolute inset-0 opacity-[0.08] pointer-events-none" />
+      <div
+        aria-hidden
+        className="absolute inset-y-0 right-0 w-[58%] bg-[#0b1012]/[0.06] [clip-path:polygon(18%_0,100%_0,100%_100%,0_100%)]"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-y-0 left-0 w-[36%] bg-[#83c95b]/15 [clip-path:polygon(0_0,76%_0,100%_100%,0_100%)]"
+      />
       
-      <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mb-12 text-center">
           <p className="section-kicker text-[#517d35]">Instant Pricing</p>
           <h2 className="section-title text-[#0b1012]">Get a State-of-the-Art Estimate</h2>

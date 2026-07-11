@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Star, BadgeCheck } from "lucide-react";
+import { BadgeCheck, Star } from "lucide-react";
 
 const REVIEWS = [
   {
@@ -21,14 +21,23 @@ const REVIEWS = [
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="relative overflow-hidden py-20 md:py-24 bg-[#f5f0e8] text-[#0b1012]">
+    <section id="reviews" className="relative overflow-hidden bg-[#f5f0e8] py-20 text-[#0b1012] md:py-24">
       <div className="section-divider" />
       <div className="absolute inset-0 site-grid opacity-[0.08] pointer-events-none" />
-      <div className="relative max-w-7xl mx-auto px-5 md:px-8">
+      <div
+        aria-hidden
+        className="absolute inset-y-0 left-0 w-[42%] bg-[#0b1012]/[0.05] [clip-path:polygon(0_0,78%_0,100%_100%,0_100%)]"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-y-0 right-0 w-[44%] bg-[#83c95b]/18 [clip-path:polygon(24%_0,100%_0,100%_100%,0_100%)]"
+      />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-5 md:px-8">
         <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div className="max-w-2xl">
-          <p className="text-[#83c95b] font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-3">Straight From The Neighborhood</p>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#0b1012]">Clean work. Honest pricing. On time.</h2>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#517d35] md:text-sm">Straight From The Neighborhood</p>
+            <h2 className="text-3xl font-extrabold text-[#0b1012] md:text-5xl">Clean work. Honest pricing. On time.</h2>
           </div>
           <div className="rounded-2xl border border-[#0b1012]/10 bg-[#0b1012] px-6 py-5 shadow-xl shadow-black/10">
             <p className="text-4xl font-extrabold text-white">4.9/5</p>
@@ -36,7 +45,7 @@ export default function Reviews() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-3">
           {REVIEWS.map((r, i) => (
             <motion.div
               key={r.name}
@@ -45,14 +54,14 @@ export default function Reviews() {
               transition={{ duration: 0.35, delay: i * 0.02 }}
               className="relative rounded-2xl border border-[#0b1012]/10 bg-white p-7 shadow-xl shadow-black/5 md:p-8"
             >
-              <div className="flex items-center gap-1 mb-4 text-accent">
+              <div className="mb-4 flex items-center gap-1 text-accent">
                 {Array.from({ length: 5 }).map((_, s) => (
                   <Star key={s} size={16} fill="currentColor" strokeWidth={0} />
                 ))}
               </div>
-              <p className="text-[#1c292e] text-sm md:text-base leading-relaxed mb-6">&ldquo;{r.quote}&rdquo;</p>
-              <div className="flex items-center gap-3 pt-4 border-t border-[#0b1012]/10">
-                <span className="w-9 h-9 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center text-[#517d35]">
+              <p className="mb-6 text-sm leading-relaxed text-[#1c292e] md:text-base">&ldquo;{r.quote}&rdquo;</p>
+              <div className="flex items-center gap-3 border-t border-[#0b1012]/10 pt-4">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-accent/30 bg-accent/15 text-[#517d35]">
                   <BadgeCheck size={16} />
                 </span>
                 <div>

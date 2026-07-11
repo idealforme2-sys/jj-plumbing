@@ -37,8 +37,16 @@ export default function FAQ() {
   return (
     <section id="faq" className="relative overflow-hidden bg-secondary/40 py-16 md:py-20">
       <div aria-hidden className="absolute inset-0 bg-dots opacity-[0.08]" />
+      <div
+        aria-hidden
+        className="absolute inset-y-0 left-0 w-[40%] bg-primary/45 [clip-path:polygon(0_0,76%_0,100%_100%,0_100%)]"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-y-0 right-0 w-[48%] bg-accent/10 [clip-path:polygon(22%_0,100%_0,100%_100%,0_100%)]"
+      />
 
-      <div className="relative mx-auto grid max-w-7xl gap-8 px-5 md:px-8 lg:grid-cols-[0.76fr_1.24fr] lg:gap-12">
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-5 md:px-8 lg:grid-cols-[0.76fr_1.24fr] lg:gap-12">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <p className="section-kicker">Questions</p>
           <h2 className="section-title max-w-xl">Frequently Asked Questions</h2>
