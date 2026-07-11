@@ -6,6 +6,7 @@ import { Services } from "./components/Services";
 import { Process } from "./components/Process";
 import QuoteTool from "./components/QuoteTool";
 import { Guarantee } from "./components/Guarantee";
+import { InstagramShowcase } from "./components/InstagramShowcase";
 import Reviews from "./components/Reviews";
 import ServiceArea from "./components/ServiceArea";
 import FAQ from "./components/FAQ";
@@ -29,6 +30,7 @@ function App() {
           <FAQ />
           <QuoteTool />
           <Guarantee />
+          <InstagramShowcase />
         </main>
         <Footer />
         <MobileStickyCTA />
