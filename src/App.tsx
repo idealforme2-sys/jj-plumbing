@@ -27,10 +27,10 @@ function App() {
           <Process />
           <Reviews />
           <ServiceArea />
+          <InstagramShowcase />
           <FAQ />
           <QuoteTool />
           <Guarantee />
-          <InstagramShowcase />
         </main>
         <Footer />
         <MobileStickyCTA />
