@@ -39,11 +39,11 @@ export default function FAQ() {
       <div aria-hidden className="absolute inset-0 bg-dots opacity-[0.08]" />
       <div
         aria-hidden
-        className="absolute inset-y-0 left-0 w-[40%] bg-primary/45 [clip-path:polygon(0_0,76%_0,100%_100%,0_100%)]"
+        className="absolute inset-y-0 left-0 w-[52%] bg-primary/55 [clip-path:polygon(0_0,86%_0,70%_100%,0_100%)]"
       />
       <div
         aria-hidden
-        className="absolute inset-y-0 right-0 w-[48%] bg-accent/10 [clip-path:polygon(22%_0,100%_0,100%_100%,0_100%)]"
+        className="absolute inset-y-0 right-0 w-[34%] bg-accent/12 [clip-path:polygon(0_0,100%_0,100%_100%,30%_100%)]"
       />
 
       <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-5 md:px-8 lg:grid-cols-[0.76fr_1.24fr] lg:gap-12">

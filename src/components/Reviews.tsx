@@ -26,11 +26,11 @@ export default function Reviews() {
       <div className="absolute inset-0 site-grid opacity-[0.08] pointer-events-none" />
       <div
         aria-hidden
-        className="absolute inset-y-0 left-0 w-[42%] bg-[#0b1012]/[0.05] [clip-path:polygon(0_0,78%_0,100%_100%,0_100%)]"
+        className="absolute inset-y-0 left-0 w-[30%] bg-[#0b1012]/[0.06] [clip-path:polygon(0_0,100%_0,72%_100%,0_100%)]"
       />
       <div
         aria-hidden
-        className="absolute inset-y-0 right-0 w-[44%] bg-[#83c95b]/18 [clip-path:polygon(24%_0,100%_0,100%_100%,0_100%)]"
+        className="absolute inset-y-0 left-[38%] w-[24%] bg-[#83c95b]/20 [clip-path:polygon(0_0,62%_0,100%_100%,38%_100%)]"
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 md:px-8">
