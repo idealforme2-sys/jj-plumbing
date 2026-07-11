@@ -20,20 +20,22 @@ export default function ServiceArea() {
   };
 
   return (
-    <section id="service-area" className="relative py-20 md:py-28">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-start">
-        <div>
-          <p className="text-accent font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-3">Service Area</p>
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-5">Local techs, real neighborhoods.</h2>
-          <p className="text-text-muted text-base md:text-lg mb-8 max-w-md">
+    <section id="service-area" className="relative overflow-hidden py-20 md:py-24 bg-[#0b1012]">
+      <div className="absolute inset-0 site-grid opacity-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 h-full w-1/3 bg-[#83c95b] pointer-events-none [clip-path:polygon(0_0,70%_0,100%_100%,0_100%)]" />
+      <div className="relative max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-start">
+        <div className="rounded-3xl border border-[#0b1012]/10 bg-[#f5f0e8] p-8 text-[#0b1012] shadow-2xl shadow-black/20">
+          <p className="font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-3 text-[#517d35]">Service Area</p>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-5 text-[#0b1012]">Local techs, real neighborhoods.</h2>
+          <p className="text-[#4f5a62] text-base md:text-lg mb-8 max-w-md">
             JJ Plumbing dispatches from a single home base, which keeps drive times short and
             response times fast across the metro.
           </p>
 
           <div className="flex flex-wrap gap-2.5 mb-10">
             {CITIES.map((c) => (
-              <span key={c} className="flex items-center gap-1.5 bg-secondary border border-white/10 rounded-full px-4 py-2 text-xs md:text-sm text-chrome">
-                <MapPin size={13} className="text-accent" />
+              <span key={c} className="flex items-center gap-1.5 bg-white border border-[#0b1012]/10 rounded-full px-4 py-2 text-xs md:text-sm text-[#0b1012] shadow-lg shadow-black/5">
+                <MapPin size={13} className="text-[#517d35]" />
                 {c}
               </span>
             ))}
@@ -45,12 +47,12 @@ export default function ServiceArea() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="bg-secondary rounded-[32px] border-metallic p-8 md:p-10"
+          className="rounded-3xl border border-white/10 bg-secondary p-8 shadow-2xl shadow-black/30 md:p-10"
         >
           <h3 className="text-xl md:text-2xl font-bold mb-2">Check your zip code</h3>
           <p className="text-text-muted text-sm mb-6">See if you're inside our fast-response radius.</p>
 
-          <div className="flex gap-3">
+          <form onSubmit={(e) => { e.preventDefault(); checkZip(); }} className="flex flex-col gap-3 sm:flex-row">
             <input
               type="text"
               inputMode="numeric"
@@ -61,15 +63,15 @@ export default function ServiceArea() {
                 setResult("idle");
               }}
               placeholder="Enter 5-digit zip"
-              className="flex-1 bg-primary border border-white/10 focus:border-accent/60 rounded-full px-5 py-3.5 text-sm md:text-base text-white placeholder:text-text-muted outline-none transition-colors"
+              className="min-w-0 flex-1 bg-primary border border-white/10 focus:border-accent/60 rounded-full px-5 py-3.5 text-sm md:text-base text-white placeholder:text-text-muted outline-none transition-colors"
             />
             <button
-              onClick={checkZip}
+              type="submit"
               className="bg-accent text-primary font-bold text-sm md:text-base px-6 py-3.5 rounded-full hover:bg-accent-hover transition-colors shrink-0"
             >
               Check
             </button>
-          </div>
+          </form>
 
           {result === "covered" && (
             <motion.div

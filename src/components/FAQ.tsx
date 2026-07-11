@@ -29,9 +29,9 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative py-20 md:py-28 bg-secondary/30">
+    <section id="faq" className="relative py-20 md:py-24 bg-secondary/30">
       <div className="max-w-3xl mx-auto px-5 md:px-8">
-        <div className="text-center mb-14">
+        <div className="text-center mb-12">
           <p className="text-accent font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-3">Questions</p>
           <h2 className="text-3xl md:text-5xl font-extrabold">Frequently Asked</h2>
         </div>
@@ -40,10 +40,10 @@ export default function FAQ() {
           {FAQS.map((f, i) => {
             const isOpen = open === i;
             return (
-              <div key={f.q} className="bg-secondary rounded-2xl border border-white/10 overflow-hidden">
+              <div key={f.q} className="site-card rounded-lg overflow-hidden">
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left hover:bg-white/[0.025] transition-colors"
                   aria-expanded={isOpen}
                 >
                   <span className="font-semibold text-white text-sm md:text-base">{f.q}</span>

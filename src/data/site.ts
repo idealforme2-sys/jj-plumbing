@@ -3,8 +3,8 @@ import { Flame, Gauge, Search, Wrench } from 'lucide-react';
 export const brand = {
   name: 'JJ Plumbing',
   line: 'Reliable. Honest. Quality.',
-  phone: '(555) 557-5862',
-  phoneHref: 'tel:5555575862',
+  phone: '951-490-9525',
+  phoneHref: 'tel:9514909525',
   logo: '/JJPLB.jpg',
 };
 

@@ -31,7 +31,9 @@
     scroll-behavior: smooth;
   }
   body {
-    background: var(--ink);
+    background:
+      linear-gradient(180deg, rgba(131, 201, 91, .045), transparent 280px),
+      var(--ink);
     color: var(--ivory);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -53,6 +55,10 @@
   :focus-visible {
     outline: 2px solid var(--brand);
     outline-offset: 3px;
+  }
+  ::selection {
+    background: rgba(131, 201, 91, .32);
+    color: white;
   }
 }
 
@@ -98,6 +104,13 @@
   border: 1px solid var(--line);
   background: linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .035));
   box-shadow: 0 24px 80px rgba(0, 0, 0, .28);
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.site-card:hover {
+  border-color: rgba(131, 201, 91, .32);
+  transform: translateY(-2px);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, .34);
 }
 
 /* Typography styles */
@@ -105,6 +118,7 @@
   font-size: .875rem;
   font-weight: 800;
   letter-spacing: .2em;
+  line-height: 1.2;
   text-transform: uppercase;
 }
 

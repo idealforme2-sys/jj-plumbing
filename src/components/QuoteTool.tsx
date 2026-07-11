@@ -58,6 +58,7 @@ export default function QuoteTool() {
   const [selectedService, setSelectedService] = useState<ServiceOption | null>(null);
   const [scopeMultiplier, setScopeMultiplier] = useState(2); // 1 to 5
   const [contactData, setContactData] = useState({ name: '', phone: '', email: '' });
+  const [estimateId, setEstimateId] = useState(0);
 
   // Dynamic cost calculation
   const calculateEstimate = () => {
@@ -83,6 +84,7 @@ export default function QuoteTool() {
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (contactData.name && contactData.phone) {
+      setEstimateId(Math.floor(1000 + Math.random() * 9000));
       setStep(3);
     }
   };
@@ -92,43 +94,44 @@ export default function QuoteTool() {
     setSelectedService(null);
     setScopeMultiplier(2);
     setContactData({ name: '', phone: '', email: '' });
+    setEstimateId(0);
   };
 
   return (
-    <section id="quote" className="relative py-24 bg-[#0b1012] overflow-hidden">
+    <section id="quote" className="relative py-20 md:py-24 bg-[#f5f0e8] text-[#0b1012] overflow-hidden">
       <div id="quote-tool" className="absolute -top-20" />
-      <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
-      <div className="site-grid absolute inset-0 opacity-10 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-2 bg-[#0b1012]" />
+      <div className="site-grid absolute inset-0 opacity-[0.08] pointer-events-none" />
       
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="mb-16 text-center">
-          <p className="section-kicker text-[#83c95b]">Instant Pricing</p>
-          <h2 className="section-title text-white">Get a State-of-the-Art Estimate</h2>
+        <div className="mb-12 text-center">
+          <p className="section-kicker text-[#517d35]">Instant Pricing</p>
+          <h2 className="section-title text-[#0b1012]">Get a State-of-the-Art Estimate</h2>
         </div>
 
         {/* Master Two-Column Grid */}
-        <div className="grid lg:grid-cols-[400px_1fr] gap-8 items-stretch">
+        <div className="grid lg:grid-cols-[380px_1fr] gap-6 lg:gap-8 items-stretch">
           
           {/* Left Column: Green Contour Callout Card (FinalCTA content made compact) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl border-2 border-[#83c95b] bg-[#0b1012] p-8 flex flex-col justify-between shadow-[0_0_40px_rgba(131,201,91,0.15)] relative overflow-hidden"
+            className="rounded-3xl border-2 border-[#0b1012] bg-[#83c95b] p-8 flex flex-col justify-between shadow-2xl shadow-black/10 relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#83c95b]/5 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute inset-x-0 top-0 h-1 bg-[#0b1012] pointer-events-none" />
             
             <div className="relative space-y-6">
-              <div className="inline-flex items-center gap-2 bg-[#83c95b]/10 border border-[#83c95b]/20 px-3.5 py-1.5 rounded-full">
+              <div className="inline-flex items-center gap-2 bg-[#0b1012] border border-[#0b1012] px-3.5 py-1.5 rounded-full">
                 <AlertTriangle size={16} className="text-[#83c95b]" />
                 <span className="text-[#83c95b] font-bold text-xs uppercase tracking-wider">Preventive Action</span>
               </div>
               
-              <h3 className="text-2xl font-black text-white leading-tight">
+              <h3 className="text-2xl font-black text-[#0b1012] leading-tight">
                 A small drip today is a flooded floor tomorrow.
               </h3>
               
-              <p className="text-sm text-[#a8b0b8] leading-relaxed">
+              <p className="text-sm text-[#1c292e] leading-relaxed">
                 Catch it early. A same-week inspection costs far less than emergency water damage restoration — and it's a lot less stressful too.
               </p>
             </div>
@@ -136,13 +139,13 @@ export default function QuoteTool() {
             <div className="mt-8 flex flex-col gap-3 relative z-10">
               <button
                 onClick={resetEstimator}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#83c95b] hover:bg-[#97df6d] text-[#0b1012] font-extrabold py-3.5 text-sm transition-transform active:scale-95"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#0b1012] hover:bg-[#1c292e] text-white font-extrabold py-3.5 text-sm transition-transform active:scale-95"
               >
                 Schedule Service Now <ArrowRight size={16} />
               </button>
               <a
                 href={brand.phoneHref}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 hover:border-white/30 bg-white/[0.02] hover:bg-white/[0.06] text-white font-bold py-3.5 text-sm transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-xl border border-[#0b1012]/20 hover:border-[#0b1012]/50 bg-white/35 hover:bg-white/55 text-[#0b1012] font-bold py-3.5 text-sm transition-all"
               >
                 <PhoneCall size={16} className="text-[#83c95b]" /> Call Dispatch
               </a>
@@ -150,8 +153,8 @@ export default function QuoteTool() {
           </motion.div>
 
           {/* Right Column: Premium Estimator Module */}
-          <div className="site-card rounded-3xl p-6 md:p-10 flex flex-col justify-between relative overflow-hidden bg-white/[0.01]">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-white/5">
+          <div className="rounded-3xl border-2 border-[#0b1012] bg-[#0b1012] p-6 md:p-10 flex flex-col justify-between relative overflow-hidden shadow-[0_36px_110px_rgba(11,16,18,.34)]">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-white/10">
               <motion.div 
                 className="h-full bg-[#83c95b]"
                 animate={{ width: `${(step / 3) * 100}%` }}
@@ -180,16 +183,16 @@ export default function QuoteTool() {
                           <button
                             key={service.id}
                             onClick={() => handleServiceSelect(service)}
-                            className="flex items-start gap-4 text-left p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:border-[#83c95b]/40 transition-all group"
+                            className="flex items-start gap-4 text-left p-5 rounded-2xl border border-white/15 bg-white/[0.08] hover:bg-white/[0.13] hover:border-[#83c95b]/60 transition-all group"
                           >
-                            <div className="bg-[#83c95b]/10 p-2.5 rounded-lg group-hover:scale-105 transition-transform text-[#83c95b]">
+                            <div className="bg-[#83c95b] p-2.5 rounded-lg group-hover:scale-105 transition-transform text-[#0b1012]">
                               <Icon size={20} />
                             </div>
                             <div>
-                              <h5 className="font-bold text-white text-sm group-hover:text-[#83c95b] transition-colors">
+                              <h5 className="font-extrabold text-white text-base group-hover:text-[#83c95b] transition-colors">
                                 {service.title}
                               </h5>
-                              <p className="text-[11px] text-[#a8b0b8] mt-0.5 leading-snug">
+                              <p className="text-xs text-white/75 mt-1 leading-snug">
                                 {service.desc}
                               </p>
                             </div>
@@ -342,7 +345,7 @@ export default function QuoteTool() {
                     </h4>
                     
                     <p className="text-xs text-[#a8b0b8] leading-relaxed mb-6">
-                      Thanks <span className="text-white font-bold">{contactData.name}</span>. We have assigned estimate ID <span className="text-white font-mono font-bold">#JJ-{(Math.random()*10000).toFixed(0)}</span> for your quote of <span className="text-[#83c95b] font-bold">${min}-${max}</span>.
+                      Thanks <span className="text-white font-bold">{contactData.name}</span>. We have assigned estimate ID <span className="text-white font-mono font-bold">#JJ-{estimateId}</span> for your quote of <span className="text-[#83c95b] font-bold">${min}-${max}</span>.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-3">

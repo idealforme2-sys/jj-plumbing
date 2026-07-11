@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Droplet } from "lucide-react";
+import { brand } from "../data/site";
 
 const DURATION = 3500;
 
@@ -54,13 +54,13 @@ export default function CinematicEntrance({ onDone }: { onDone: () => void }) {
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
                 className="flex items-center gap-3 md:gap-4"
               >
-                <motion.span
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
-                  className="text-accent"
-                >
-                  <Droplet size={34} strokeWidth={2.5} fill="currentColor" className="md:w-10 md:h-10" />
-                </motion.span>
+                <motion.img
+                  src={brand.logo}
+                  alt={`${brand.name} logo`}
+                  animate={{ scale: [1, 1.04, 1] }}
+                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                  className="h-16 w-16 rounded-xl border border-accent/40 bg-white object-contain p-1.5 shadow-2xl shadow-accent/20 md:h-20 md:w-20"
+                />
                 <h1
                   className="text-4xl sm:text-6xl md:text-8xl font-extrabold text-white tracking-tight"
                   style={{ filter: "drop-shadow(0 6px 22px rgba(131,201,91,0.45))" }}

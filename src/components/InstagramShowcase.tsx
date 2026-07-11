@@ -1,23 +1,5 @@
 import { motion } from 'motion/react';
-import { Play } from 'lucide-react';
-
-const InstagramIcon = ({ size = 24, ...props }: { size?: number } & React.SVGProps<SVGSVGElement>) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-  </svg>
-);
+import { Camera, Play } from 'lucide-react';
 
 interface VideoShowcase {
   id: number;
@@ -78,38 +60,42 @@ const SHOWCASE_VIDEOS: VideoShowcase[] = [
 ];
 
 export function InstagramShowcase() {
-  const handleClick = (url: string) => {
+  const openPost = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <section id="instagram-showcase" className="relative py-24 bg-[#0b1012] overflow-hidden border-t border-white/5">
-      <div className="absolute inset-0 bg-dots opacity-10 pointer-events-none" />
-      
+    <section id="instagram-showcase" className="relative overflow-hidden bg-[#0b1012] py-20 md:py-24">
+      <div className="absolute inset-0 site-grid opacity-10 pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-2 bg-[#83c95b]" />
+
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div className="mb-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <p className="section-kicker text-[#83c95b]">Showcase</p>
             <h2 className="section-title text-white">Watch us work.</h2>
           </div>
-          <p className="max-w-md text-base leading-7 text-[#a8b0b8]">
-            Real footage from our recent service calls. Click any video to view the original post and comments on Instagram.
+          <p className="max-w-xl text-base leading-7 text-[#a8b0b8] lg:justify-self-end">
+            Real footage from recent service calls, presented like a field wall instead of a quiet gallery.
           </p>
         </div>
 
-        {/* Video Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:gap-5">
           {SHOWCASE_VIDEOS.map((item, index) => (
             <motion.article
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ delay: index * 0.05 }}
-              onClick={() => handleClick(item.instagramUrl)}
-              className="group relative cursor-pointer aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 bg-white/[0.01] hover:border-[#83c95b]/50 transition-all shadow-xl shadow-black/40"
+              initial={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8 }}
+              transition={{ delay: index * 0.02 }}
+              onClick={() => openPost(item.instagramUrl)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') openPost(item.instagramUrl);
+              }}
+              role="link"
+              aria-label={`Open ${item.title} on Instagram`}
+              tabIndex={0}
+              className="group relative aspect-[9/16] cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] shadow-2xl shadow-black/30 focus:outline-none focus:border-[#83c95b]"
             >
-              {/* Local Video Tag */}
               <video
                 muted
                 loop
@@ -122,35 +108,26 @@ export function InstagramShowcase() {
                   e.currentTarget.pause();
                   e.currentTarget.currentTime = 0;
                 }}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               >
                 <source src={item.videoUrl} type="video/mp4" />
               </video>
-
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1012] via-transparent to-black/30 pointer-events-none transition-opacity duration-300 opacity-60 group-hover:opacity-40" />
-
-              {/* Interaction Indicators */}
-              <div className="absolute inset-0 flex flex-col justify-between p-4 z-10 pointer-events-none">
-                {/* Top Instagram Icon */}
-                <div className="self-end bg-black/40 backdrop-blur-md border border-white/10 p-2 rounded-full text-white group-hover:bg-[#83c95b] group-hover:text-[#0b1012] transition-colors duration-300">
-                  <InstagramIcon size={16} />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1012] via-[#0b1012]/20 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-between p-4">
+                <div className="flex justify-end">
+                  <span className="rounded-full bg-[#83c95b] p-2 text-[#0b1012]">
+                    <Camera size={16} />
+                  </span>
                 </div>
-
-                {/* Center Play Icon (visible by default, morphs on hover) */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="bg-black/50 backdrop-blur-md border border-white/15 p-4 rounded-full text-[#83c95b] shadow-2xl scale-100 group-hover:scale-110 opacity-80 group-hover:opacity-100 transition-all duration-300">
+                <div className="flex justify-center">
+                  <span className="rounded-full border border-white/15 bg-black/50 p-4 text-[#83c95b] backdrop-blur">
                     <Play size={20} fill="currentColor" />
-                  </div>
+                  </span>
                 </div>
-
-                {/* Bottom Title */}
-                <div className="space-y-1">
-                  <p className="text-xs font-bold text-white tracking-wide uppercase">
-                    {item.title}
-                  </p>
-                  <p className="text-[10px] text-[#83c95b] font-semibold flex items-center gap-1 group-hover:underline">
-                    <InstagramIcon size={10} /> View Post
+                <div>
+                  <p className="text-xs font-extrabold uppercase tracking-wide text-white">{item.title}</p>
+                  <p className="mt-1 flex items-center gap-1 text-[10px] font-bold uppercase tracking-[.14em] text-[#83c95b]">
+                    <Camera size={10} /> View post
                   </p>
                 </div>
               </div>
