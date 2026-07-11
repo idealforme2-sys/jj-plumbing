@@ -115,6 +115,14 @@
   background-size: 60px 60px;
 }
 
+.section-divider {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 0.5rem;
+  background-color: var(--brand);
+}
+
 /* Premium gradient card border */
 .site-card {
   border: 1px solid var(--line);
@@ -167,10 +175,6 @@
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.02em;
-  background: linear-gradient(180deg, #ffffff 40%, #e2e8f0 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {

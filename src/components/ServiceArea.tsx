@@ -21,6 +21,7 @@ export default function ServiceArea() {
 
   return (
     <section id="service-area" className="relative overflow-hidden py-20 md:py-24 bg-[#0b1012]">
+      <div className="section-divider" />
       <div className="absolute inset-0 site-grid opacity-10 pointer-events-none" />
       <div className="absolute left-0 top-0 h-full w-1/3 bg-[#83c95b] pointer-events-none [clip-path:polygon(0_0,70%_0,100%_100%,0_100%)]" />
       <div className="relative max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-start">
@@ -95,6 +96,9 @@ export default function ServiceArea() {
           )}
         </motion.div>
       </div>
+      
+      {/* Sleek orange separator marking the end of the section */}
+      <div className="absolute inset-x-0 bottom-0 h-2 bg-copper" />
     </section>
   );
 }

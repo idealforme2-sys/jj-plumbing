@@ -54,7 +54,6 @@ export function Hero() {
     <section id="top" className="relative pt-28 md:pt-36 pb-16 md:pb-24 overflow-hidden bg-[#0b1012]">
       {/* Dynamic Background Layout */}
       <div className="absolute inset-0 site-grid opacity-25 pointer-events-none" />
-      <div className="absolute inset-x-0 top-24 h-[1px] bg-gradient-to-r from-transparent via-[#83c95b]/30 to-transparent pointer-events-none" />
       <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
       <div className="absolute inset-0 bg-noise pointer-events-none" />
       <FlagWatermark />

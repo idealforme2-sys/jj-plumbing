@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Play, Heart, MessageCircle, Share2, Compass } from 'lucide-react';
+import { Heart, MessageCircle, Share2, Compass } from 'lucide-react';
 
 interface VideoShowcase {
   id: number;
@@ -83,11 +83,14 @@ export function InstagramShowcase() {
   };
 
   return (
-    <section id="instagram-showcase" className="relative py-28 bg-[#0b1012] overflow-hidden border-t border-white/5">
+    <section id="instagram-showcase" className="relative py-28 bg-[#0b1012] overflow-hidden">
+      <div className="section-divider" />
       <div className="absolute inset-0 bg-dots opacity-[0.12] pointer-events-none" />
       
-      {/* Background glow flares */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#83c95b]/3 rounded-full blur-[140px] pointer-events-none" />
+      {/* Geometric Background Shapes */}
+      <div className="absolute top-0 right-0 w-3/4 h-[120%] bg-[#141b1e] transform rotate-12 translate-x-1/4 -translate-y-1/4 pointer-events-none" style={{ clipPath: 'polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%)' }} />
+      <div className="absolute bottom-0 left-0 w-1/2 h-full bg-[#83c95b]/5 transform -rotate-6 -translate-x-1/4 translate-y-1/4 pointer-events-none" style={{ clipPath: 'polygon(0% 0%, 100% 20%, 80% 100%, 0% 100%)' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#83c95b]/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
@@ -109,8 +112,7 @@ export function InstagramShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ delay: index * 0.05, duration: 0.5 }}
-              onClick={() => handleClick(item.instagramUrl)}
-              className="group relative cursor-pointer aspect-[9/18] rounded-[30px] overflow-hidden bg-black border-[5px] border-black/90 shadow-2xl shadow-black/80 hover:scale-[1.03] transition-all duration-300"
+              className="group relative aspect-[9/18] rounded-[30px] overflow-hidden bg-black border-[5px] border-black/90 shadow-2xl shadow-black/80 hover:scale-[1.03] transition-all duration-300"
               style={{
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 255, 255, 0.1) inset'
               }}
@@ -130,20 +132,12 @@ export function InstagramShowcase() {
                 </div>
               </div>
 
-              {/* Local Video Tag */}
               <video
                 muted
                 loop
+                autoPlay
                 playsInline
-                preload="metadata"
-                onMouseEnter={(e) => {
-                  e.currentTarget.play().catch(() => {});
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.pause();
-                  e.currentTarget.currentTime = 0;
-                }}
-                className="w-full h-full object-cover transition-all duration-700 brightness-[90%] group-hover:brightness-[100%] group-hover:scale-102"
+                className="w-full h-full object-cover transition-all duration-700 brightness-[90%] group-hover:brightness-[100%] group-hover:scale-105"
               >
                 <source src={item.videoUrl} type="video/mp4" />
               </video>
@@ -170,9 +164,12 @@ export function InstagramShowcase() {
                     <p className="text-[10px] font-medium text-white truncate">
                       {item.title}
                     </p>
-                    <p className="text-[9px] text-[#83c95b] font-extrabold flex items-center gap-1 group-hover:underline">
+                    <button 
+                      onClick={() => handleClick(item.instagramUrl)}
+                      className="text-[9px] text-[#83c95b] font-extrabold flex items-center gap-1 hover:underline cursor-pointer pointer-events-auto"
+                    >
                       <InstagramIcon size={8} /> View Post
-                    </p>
+                    </button>
                   </div>
 
                   {/* Right Reels action bar mockup */}
@@ -196,13 +193,6 @@ export function InstagramShowcase() {
                       <span className="text-[7px] font-bold mt-0.5">Share</span>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Faint Center Play Icon when paused (fades out on hover when playing) */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-300 group-hover:opacity-0">
-                <div className="bg-black/50 backdrop-blur-md border border-white/10 p-3.5 rounded-full text-[#83c95b] shadow-2xl scale-100">
-                  <Play size={16} fill="currentColor" />
                 </div>
               </div>
 

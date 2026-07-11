@@ -100,7 +100,7 @@ export default function QuoteTool() {
   return (
     <section id="quote" className="relative py-20 md:py-24 bg-[#f5f0e8] text-[#0b1012] overflow-hidden">
       <div id="quote-tool" className="absolute -top-20" />
-      <div className="absolute inset-x-0 top-0 h-2 bg-[#0b1012]" />
+      <div className="section-divider" />
       <div className="site-grid absolute inset-0 opacity-[0.08] pointer-events-none" />
       
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">

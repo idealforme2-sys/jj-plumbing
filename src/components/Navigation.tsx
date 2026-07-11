@@ -6,7 +6,6 @@ import { brand } from "../data/site";
 const LINKS = [
   { label: "Services", href: "#services" },
   { label: "How It Works", href: "#process" },
-  { label: "Get a Quote", href: "#quote" },
   { label: "Reviews", href: "#reviews" },
   { label: "Service Area", href: "#service-area" },
   { label: "FAQ", href: "#faq" },
@@ -72,19 +71,13 @@ export default function Navigation() {
 
         <div className="flex items-center gap-2">
           <div className="hidden lg:flex items-center gap-2">
-            <a href="#" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-text-muted hover:border-accent/50 hover:text-accent transition-colors">
+            <a href="https://www.instagram.com/j_j_plumbing_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-text-muted hover:border-accent/50 hover:text-accent transition-colors">
               <InstagramIcon />
             </a>
-            <a href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-text-muted hover:border-accent/50 hover:text-accent transition-colors">
+            <a href="https://web.facebook.com/p/JJ-Plumbing-100075805388351/?_rdc=1&_rdr#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-text-muted hover:border-accent/50 hover:text-accent transition-colors">
               <FacebookIcon />
             </a>
           </div>
-          <button
-            onClick={() => handleNav("#quote")}
-            className="hidden sm:flex items-center gap-2 rounded-full bg-accent text-primary font-bold text-sm px-4 py-2 shadow-[0_0_24px_rgba(131,201,91,.18)] hover:bg-accent-hover transition-colors"
-          >
-            Get Estimate
-          </button>
           <a
             href={brand.phoneHref}
             className="hidden sm:flex items-center gap-2 rounded-full border border-accent/40 text-accent font-semibold text-sm px-4 py-2 hover:bg-accent hover:text-primary transition-colors"
@@ -121,17 +114,14 @@ export default function Navigation() {
                 </li>
               ))}
               <li className="flex gap-2 py-2">
-                <a href="#" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-text-muted">
+                <a href="https://www.instagram.com/j_j_plumbing_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-text-muted hover:text-accent transition-colors">
                   <InstagramIcon />
                 </a>
-                <a href="#" aria-label="Facebook" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-text-muted">
+                <a href="https://web.facebook.com/p/JJ-Plumbing-100075805388351/?_rdc=1&_rdr#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-text-muted hover:text-accent transition-colors">
                   <FacebookIcon />
                 </a>
               </li>
               <li className="pt-2 flex flex-col gap-2">
-                <button onClick={() => handleNav("#quote")} className="w-full flex items-center justify-center gap-2 rounded-full bg-accent text-primary font-bold text-sm px-4 py-3">
-                  Get Estimate
-                </button>
                 <a href={brand.phoneHref} className="w-full flex items-center justify-center gap-2 rounded-full border border-white/10 text-white font-semibold text-sm px-4 py-3">
                   <Phone size={15} />
                   {brand.phone}

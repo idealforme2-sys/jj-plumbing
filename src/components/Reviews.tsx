@@ -22,12 +22,12 @@ const REVIEWS = [
 export default function Reviews() {
   return (
     <section id="reviews" className="relative overflow-hidden py-20 md:py-24 bg-[#f5f0e8] text-[#0b1012]">
-      <div className="absolute inset-x-0 top-0 h-2 bg-[#EA580C]" />
+      <div className="section-divider" />
       <div className="absolute inset-0 site-grid opacity-[0.08] pointer-events-none" />
       <div className="relative max-w-7xl mx-auto px-5 md:px-8">
         <div className="mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div className="max-w-2xl">
-          <p className="text-copper font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-3">Straight From The Neighborhood</p>
+          <p className="text-[#83c95b] font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-3">Straight From The Neighborhood</p>
           <h2 className="text-3xl md:text-5xl font-extrabold text-[#0b1012]">Clean work. Honest pricing. On time.</h2>
           </div>
           <div className="rounded-2xl border border-[#0b1012]/10 bg-[#0b1012] px-6 py-5 shadow-xl shadow-black/10">

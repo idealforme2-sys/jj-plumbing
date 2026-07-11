@@ -25,11 +25,11 @@ function App() {
           <Hero />
           <Services />
           <Process />
+          <InstagramShowcase />
           <Reviews />
           <ServiceArea />
-          <InstagramShowcase />
-          <FAQ />
           <QuoteTool />
+          <FAQ />
           <Guarantee />
         </main>
         <Footer />
