@@ -78,6 +78,12 @@ export default function Navigation() {
               <FacebookIcon />
             </a>
           </div>
+          <button
+            onClick={() => handleNav("#quote")}
+            className="hidden md:flex items-center rounded-full bg-accent px-4 py-2 text-sm font-extrabold text-primary transition-colors hover:bg-accent-hover"
+          >
+            Get Estimate
+          </button>
           <a
             href={brand.phoneHref}
             className="hidden sm:flex items-center gap-2 rounded-full border border-accent/40 text-accent font-semibold text-sm px-4 py-2 hover:bg-accent hover:text-primary transition-colors"
@@ -122,6 +128,9 @@ export default function Navigation() {
                 </a>
               </li>
               <li className="pt-2 flex flex-col gap-2">
+                <button onClick={() => handleNav("#quote")} className="w-full rounded-full bg-accent px-4 py-3 text-sm font-extrabold text-primary">
+                  Get Estimate
+                </button>
                 <a href={brand.phoneHref} className="w-full flex items-center justify-center gap-2 rounded-full border border-white/10 text-white font-semibold text-sm px-4 py-3">
                   <Phone size={15} />
                   {brand.phone}
