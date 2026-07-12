@@ -1,6 +1,6 @@
-import type { SVGProps } from "react";
+import { useRef, useState, type SVGProps } from "react";
 import { motion } from "motion/react";
-import { Compass, Heart, MessageCircle, Share2 } from "lucide-react";
+import { Compass, Play, Pause } from "lucide-react";
 
 interface VideoShowcase {
   id: number;
@@ -60,7 +60,7 @@ const SHOWCASE_VIDEOS: VideoShowcase[] = [
   },
 ];
 
-const InstagramIcon = ({ size = 24, ...props }: { size?: number } & SVGProps<SVGSVGElement>) => (
+const InstagramIcon = ({ size = 16, ...props }: { size?: number } & SVGProps<SVGSVGElement>) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -68,93 +68,104 @@ const InstagramIcon = ({ size = 24, ...props }: { size?: number } & SVGProps<SVG
   </svg>
 );
 
-export function InstagramShowcase() {
-  const handleClick = (url: string) => {
-    window.open(url, "_blank", "noopener,noreferrer");
+function VideoCard({ item, isFeatured = false }: { item: VideoShowcase; isFeatured?: boolean }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(true);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    // Prevent trigger if they clicked the Instagram View Post button
+    if ((e.target as HTMLElement).closest(".ig-link")) return;
+
+    if (videoRef.current) {
+      if (playing) {
+        videoRef.current.pause();
+        setPlaying(false);
+      } else {
+        videoRef.current.play().catch(() => {});
+        setPlaying(true);
+      }
+    }
   };
 
   return (
-    <section id="instagram-showcase" className="relative overflow-hidden bg-primary py-20 lg:py-28">
-      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-accent" />
-      <div aria-hidden className="absolute inset-0 bg-dots opacity-[0.1]" />
-      <div aria-hidden className="absolute inset-y-0 left-[-20%] w-[58%] -skew-x-12 bg-secondary" />
-      <div
-        aria-hidden
-        className="absolute inset-y-0 right-0 w-[54%] bg-accent/10 [clip-path:polygon(22%_0,100%_0,100%_100%,0_100%)]"
-      />
+    <motion.article
+      onClick={togglePlay}
+      className={`group relative overflow-hidden rounded-2xl border border-white/10 bg-black shadow-lg cursor-pointer ${
+        isFeatured ? "col-span-2 row-span-2 aspect-square md:aspect-auto md:h-full" : "aspect-[9/16]"
+      }`}
+    >
+      <video
+        ref={videoRef}
+        muted
+        loop
+        autoPlay
+        playsInline
+        className="h-full w-full object-cover brightness-[88%] transition-all duration-700 group-hover:scale-102 group-hover:brightness-100"
+      >
+        <source src={item.videoUrl} type="video/mp4" />
+      </video>
+
+      {/* Play/Pause state indicator overlay */}
+      <div className="absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
+        <div className="bg-white/15 backdrop-blur-md p-3 rounded-full border border-white/20 text-white">
+          {playing ? <Pause size={20} /> : <Play size={20} fill="white" />}
+        </div>
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none z-10" />
+
+      {/* Video details overlay */}
+      <div className="absolute inset-x-0 bottom-0 p-5 z-20 flex flex-col gap-2.5">
+        <span className="inline-flex items-center gap-1.5 self-start bg-[#83c95b]/20 border border-[#83c95b]/30 px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider text-[#83c95b]">
+          <Compass size={10} /> Reels
+        </span>
+        
+        <div>
+          <h4 className="text-white font-extrabold text-sm md:text-base leading-tight tracking-tight">
+            {item.title}
+          </h4>
+          <p className="text-[10px] text-white/60 font-semibold mt-0.5">@jj_plumbing</p>
+        </div>
+
+        {/* View Post Button */}
+        <a
+          href={item.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="ig-link inline-flex items-center gap-2 self-start rounded-lg bg-white/10 hover:bg-[#83c95b] hover:text-[#0b1012] border border-white/10 hover:border-transparent px-3 py-1.5 text-[10px] font-black text-white uppercase tracking-wider transition-all"
+        >
+          <InstagramIcon size={12} />
+          View Original
+        </a>
+      </div>
+    </motion.article>
+  );
+}
+
+export function InstagramShowcase() {
+  return (
+    <section id="instagram-showcase" className="relative overflow-hidden bg-[#0b1012] py-20 lg:py-28">
+      <div aria-hidden className="absolute inset-0 site-grid opacity-[0.08] pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-[#83c95b]/3 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="mb-12 grid gap-5 md:grid-cols-[0.8fr_1.2fr] md:items-end">
-          <div>
-            <p className="section-kicker">Showcase</p>
-            <h2 className="section-title text-white">Watch us work.</h2>
-          </div>
-          <p className="max-w-xl text-sm leading-7 text-text-muted md:justify-self-end md:text-base">
-            Real footage from recent service calls. Hover over any screen to play, and click view original post on Instagram.
+        
+        {/* Centered Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <p className="section-kicker font-extrabold tracking-[0.2em] text-[#83c95b]">Showcase</p>
+          <h2 className="section-title text-4xl font-black text-white lg:text-5xl leading-tight font-heading">
+            Watch Us Work
+          </h2>
+          <p className="text-sm leading-relaxed text-[#a8b0b8] md:text-base">
+            Real footage from recent customer calls. Tap any screen to play or pause, and click the Instagram icon to read original reviews.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-4 lg:gap-7">
-          {SHOWCASE_VIDEOS.map((item, index) => (
-            <motion.article
-              key={item.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ delay: index * 0.04, duration: 0.42 }}
-              className="group relative aspect-[9/18] overflow-hidden rounded-[26px] border-[5px] border-black/90 bg-black shadow-2xl shadow-black/60 transition-transform duration-300 hover:scale-[1.025]"
-            >
-              <div className="absolute left-1/2 top-0 z-30 flex h-[15px] w-[70px] -translate-x-1/2 items-center justify-center rounded-b-[10px] bg-black/95 pointer-events-none">
-                <span className="mb-[4px] h-[2px] w-10 rounded-full bg-white/10" />
-                <span className="mb-[4px] ml-1.5 h-1.5 w-1.5 rounded-full bg-blue-900/40" />
-              </div>
-
-              <div className="absolute left-3 right-3 top-1 z-30 flex justify-between text-[8px] font-bold text-white/70 pointer-events-none">
-                <span>9:41</span>
-                <div className="flex items-center gap-1">
-                  <span>5G</span>
-                  <span className="relative inline-block h-2 w-3.5 rounded-sm border border-white/50 bg-white/60" />
-                </div>
-              </div>
-
-              <video muted loop autoPlay playsInline className="h-full w-full object-cover brightness-[90%] transition-all duration-700 group-hover:scale-105 group-hover:brightness-100">
-                <source src={item.videoUrl} type="video/mp4" />
-              </video>
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 opacity-65 transition-opacity duration-300 group-hover:opacity-80 pointer-events-none" />
-
-              <div className="absolute inset-0 z-10 flex flex-col justify-between p-4 pt-7 pointer-events-none">
-                <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-white/80">
-                  <Compass size={12} className="text-accent" /> Reels
-                </div>
-
-                <div className="mt-auto flex items-end justify-between gap-4">
-                  <div className="min-w-0 flex-1 space-y-1.5">
-                    <div className="flex items-center gap-2">
-                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/10">
-                        <InstagramIcon size={10} className="text-white" />
-                      </div>
-                      <span className="truncate text-[9px] font-black text-white">@jj_plumbing</span>
-                    </div>
-                    <p className="truncate text-[10px] font-medium text-white">{item.title}</p>
-                    <button onClick={() => handleClick(item.instagramUrl)} className="pointer-events-auto flex cursor-pointer items-center gap-1 text-[9px] font-extrabold text-accent hover:underline">
-                      <InstagramIcon size={8} /> View Post
-                    </button>
-                  </div>
-
-                  <div className="flex shrink-0 flex-col items-center gap-3.5 text-white/90">
-                    {[Heart, MessageCircle, Share2].map((Icon, i) => (
-                      <div key={i} className="flex flex-col items-center">
-                        <div className="rounded-full bg-black/35 p-1.5 backdrop-blur-md">
-                          <Icon size={13} fill={i < 2 ? "white" : "none"} className="text-white" />
-                        </div>
-                        <span className="mt-0.5 text-[7px] font-bold">{i === 0 ? "Likes" : i === 1 ? "Reply" : "Share"}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.article>
+        {/* Dynamic media grid with 1 Featured & 6 Supporting reels */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 lg:gap-6 items-stretch">
+          <VideoCard item={SHOWCASE_VIDEOS[0]} isFeatured={true} />
+          {SHOWCASE_VIDEOS.slice(1, 7).map((item) => (
+            <VideoCard key={item.id} item={item} />
           ))}
         </div>
       </div>

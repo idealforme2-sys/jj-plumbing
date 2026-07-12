@@ -10,6 +10,7 @@ import { InstagramShowcase } from "./components/InstagramShowcase";
 import Reviews from "./components/Reviews";
 import ServiceArea from "./components/ServiceArea";
 import FAQ from "./components/FAQ";
+import { PreFooterCTA } from "./components/PreFooterCTA";
 import Footer from "./components/Footer";
 import MobileStickyCTA from "./components/MobileStickyCTA";
 
@@ -32,6 +33,7 @@ function App() {
           <FAQ />
           <Guarantee />
         </main>
+        <PreFooterCTA />
         <Footer />
         <MobileStickyCTA />
       </div>
@@ -40,3 +42,4 @@ function App() {
 }
 
 export default App;
+

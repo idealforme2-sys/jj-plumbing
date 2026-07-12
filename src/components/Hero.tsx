@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
-import { Phone, ArrowRight, Wrench, Clock, ShieldCheck, CheckCircle, Radio } from "lucide-react";
-import { brand } from "../data/site";
+import { Phone, ArrowRight, Wrench } from "lucide-react";
 
 const MARQUEE_ITEMS = [
   "Emergency Service",
@@ -15,17 +14,11 @@ const MARQUEE_ITEMS = [
   "We Leave It Cleaner Than We Found It!",
 ];
 
-const DISPATCH_STATS = [
-  { icon: Clock, value: "45 min", label: "priority arrival" },
-  { icon: ShieldCheck, value: "Licensed", label: "insured technicians" },
-  { icon: CheckCircle, value: "Clean closeout", label: "photo verified" },
-];
-
 function FlagWatermark() {
   return (
     <svg
       viewBox="0 0 900 500"
-      className="absolute -right-24 -top-10 w-[70vw] max-w-[900px] opacity-[0.03] pointer-events-none select-none"
+      className="absolute -right-24 -top-10 w-[70vw] max-w-[900px] opacity-[0.05] pointer-events-none select-none"
       aria-hidden
     >
       {Array.from({ length: 13 }).map((_, i) => (
@@ -51,196 +44,143 @@ function FlagWatermark() {
 
 export function Hero() {
   return (
-    <section id="top" className="relative pt-28 md:pt-36 pb-16 md:pb-24 overflow-hidden bg-[#0b1012]">
-      {/* Dynamic Background Layout */}
-      <div className="absolute inset-0 site-grid opacity-25 pointer-events-none" />
-      <div className="absolute inset-0 bg-dots opacity-20 pointer-events-none" />
+    <section id="top" className="relative pt-28 md:pt-40 pb-20 md:pb-28 overflow-hidden">
+      <div className="absolute inset-0 bg-dots opacity-40 pointer-events-none" />
       <div className="absolute inset-0 bg-noise pointer-events-none" />
       <FlagWatermark />
-      
-      {/* Floating Ambient Lights */}
-      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-[#83c95b]/5 rounded-full blur-[120px] pointer-events-none animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#EA580C]/3 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0b1012] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-primary pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-[0.95fr_1.05fr] gap-12 lg:gap-16 items-center">
-        
-        {/* Left Column (Content) */}
-        <div className="relative z-10">
+      <div className="relative max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-[1.1fr_0.9fr] gap-14 lg:gap-10 items-center">
+        {/* Left column */}
+        <div>
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 border border-[#83c95b]/20 bg-[#83c95b]/10 text-[#83c95b] font-extrabold px-4 py-1.5 rounded-full text-xs md:text-sm mb-8 shadow-[0_0_30px_rgba(131,201,91,.15)]"
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 text-accent font-bold px-4 py-1.5 rounded-full text-xs md:text-sm mb-6"
           >
-            <Radio size={12} className="animate-pulse text-[#83c95b]" />
-            <span>Reliable. Honest. Quality. &bull; 24/7 Dispatch active</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            Reliable. Honest. Quality. &bull; 24/7 Response
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight mb-6 text-white"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-extrabold leading-[1.04] mb-6"
           >
-            No Drips. No Mess.<br />
-            Just <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#83c95b] to-[#97df6d]">Quality Plumbing.</span>
+            No Drips. No Mess.
+            <br />
+            Just <span className="text-accent">Quality Plumbing.</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-[#a8b0b8] text-base md:text-lg leading-relaxed max-w-xl mb-10"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-text-muted text-base md:text-lg max-w-xl mb-9"
           >
-            Local, licensed technicians who show up on time, explain every option in plain English, and treat your home like their own &mdash; boot covers and drop cloths on every job, guaranteed.
+            Local, licensed technicians who show up on time, explain every option in plain
+            English, and treat your home like their own &mdash; boot covers and drop cloths on
+            every job, guaranteed.
           </motion.p>
 
-          {/* Action CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 mb-10"
           >
             <a
               href="#quote"
-              className="group inline-flex items-center justify-center gap-2 bg-[#83c95b] hover:bg-[#97df6d] text-[#0b1012] font-black text-sm md:text-base px-8 py-4.5 rounded-xl transition-all shadow-[0_4px_30px_rgba(131,201,91,0.25)] hover:shadow-[0_4px_40px_rgba(131,201,91,0.4)]"
+              className="group inline-flex items-center justify-center gap-2 bg-accent text-primary font-bold text-sm md:text-base px-7 py-4 rounded-full transition-transform hover:scale-[1.04] active:scale-95 shadow-[0_0_25px_rgba(132,204,22,0.25)]"
             >
               Schedule Service Now
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href={brand.phoneHref}
-              className="inline-flex items-center justify-center gap-2 border border-white/10 hover:border-[#83c95b]/30 bg-white/[0.02] hover:bg-white/[0.06] text-white font-bold text-sm md:text-base px-8 py-4.5 rounded-xl transition-all"
+              href="tel:5555575862"
+              className="inline-flex items-center justify-center gap-2 border border-white/15 text-white font-semibold text-sm md:text-base px-7 py-4 rounded-full hover:border-accent/50 hover:text-accent transition-colors"
             >
-              <Phone size={18} className="text-[#83c95b]" />
-              Call Dispatch: {brand.phone}
+              <Phone size={18} />
+              Call Dispatch: (555) JJ-PLUMB
             </a>
           </motion.div>
 
-          {/* Minimal stats block */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-3 gap-3 max-w-lg"
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="mt-10 grid grid-cols-3 divide-x divide-white/15 border-y border-white/15 py-5 max-w-xl"
           >
             {[
               ['45 min', 'priority arrival'],
               ['4.9/5', 'local rating'],
               ['1 year', 'repair warranty'],
             ].map(([value, label]) => (
-              <div key={value} className="rounded-xl border border-white/5 bg-white/[0.02] p-4 text-left shadow-inner">
-                <div className="text-2xl font-black text-white font-heading">{value}</div>
-                <div className="mt-1 text-[10px] font-extrabold uppercase tracking-wider text-[#a8b0b8]">{label}</div>
+              <div key={value} className="px-4 first:pl-0">
+                <div className="text-2xl font-extrabold text-white">{value}</div>
+                <div className="mt-1 text-xs font-semibold uppercase tracking-[.16em] text-text-muted">{label}</div>
               </div>
             ))}
           </motion.div>
         </div>
 
-        {/* Right Column (Hologram Console Mockup) */}
+        {/* Right column */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
+          initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-[620px] lg:ml-auto"
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="relative"
         >
-          <div className="rounded-[36px] border border-white/10 bg-[#141b1e]/75 p-4 shadow-[0_40px_100px_rgba(0,0,0,.6)] backdrop-blur-xl relative">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#83c95b]/30 to-transparent" />
-            
-            <div className="grid gap-4 md:grid-cols-[0.85fr_1.15fr]">
-              {/* Dispatch Stats Dashboard */}
-              <div className="rounded-2xl border border-white/5 bg-[#0b1012]/80 p-5 relative overflow-hidden flex flex-col justify-between">
-                <div className="absolute inset-0 bg-noise opacity-[0.03]" />
-                <div>
-                  <div className="flex items-center justify-between">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-[#83c95b]">SLA Dispatch Board</p>
-                    <span className="w-2 h-2 rounded-full bg-[#83c95b] animate-ping" />
-                  </div>
-                  <div className="mt-6 space-y-4">
-                    {DISPATCH_STATS.map(({ icon: Icon, value, label }) => (
-                      <div key={value} className="flex items-center gap-3.5 rounded-xl border border-white/5 bg-white/[0.02] p-3.5 shadow-sm">
-                        <div className="bg-[#83c95b]/10 p-2 rounded-lg text-[#83c95b]">
-                          <Icon size={16} />
-                        </div>
-                        <div>
-                          <p className="text-sm font-black text-white leading-none">{value}</p>
-                          <p className="text-[10px] uppercase tracking-wider text-[#a8b0b8] mt-1">{label}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="mt-8 border-t border-white/5 pt-4">
-                  <p className="text-[10px] text-[#a8b0b8] leading-relaxed">
-                    All technicians are tracked in real-time. Estimate locked via secure digital signature.
-                  </p>
-                </div>
-              </div>
-
-              {/* Graphic Monitor Feed */}
-              <div className="relative rounded-2xl p-1.5 bg-gradient-to-br from-[#EA580C]/20 via-[#83c95b]/30 to-transparent">
-                <div className="relative rounded-[18px] overflow-hidden bg-[#141b1e] border border-white/10 aspect-[4/5]">
-                  <img
-                    src="/JJPLB.jpg"
-                    alt="Technician performing a clean, precise pipe repair"
-                    className="absolute inset-0 w-full h-full object-cover grayscale-[15%] brightness-[95%] hover:scale-105 transition-transform duration-700"
-                  />
-                  {/* Digital overlay grids and brackets */}
-                  <div className="absolute inset-0 bg-dots opacity-[0.12] pointer-events-none" />
-                  <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-[#83c95b]/70" />
-                  <div className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-[#83c95b]/70" />
-                  <div className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-[#83c95b]/70" />
-                  <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-[#83c95b]/70" />
-                  
-                  <div className="absolute inset-x-0 bottom-4 px-4 pointer-events-none">
-                    <div className="flex items-center gap-2.5 bg-[#0b1012]/80 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 shadow-2xl">
-                      <Wrench size={14} className="text-[#83c95b] shrink-0 animate-bounce" />
-                      <span className="text-[11px] text-white font-bold tracking-wide">Live diagnostic scan feed</span>
-                    </div>
-                  </div>
-                </div>
+          <div className="relative rounded-[32px] p-1.5 bg-gradient-to-br from-copper via-copper/40 to-transparent">
+            <div className="relative rounded-[28px] overflow-hidden bg-secondary border border-white/10 aspect-[4/5] md:aspect-[4/5]">
+              <img
+                src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200&auto=format&fit=crop"
+                alt="Technician performing a clean, precise pipe repair"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/10 to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 flex items-center gap-2 bg-primary/70 backdrop-blur-md border border-white/10 rounded-2xl px-4 py-3">
+                <Wrench size={16} className="text-accent shrink-0" />
+                <span className="text-xs md:text-sm text-chrome font-medium">Live diagnostic feed &mdash; camera-verified repairs</span>
               </div>
             </div>
           </div>
 
-          {/* Absolute floating detail cards */}
           <motion.div
-            initial={{ opacity: 0, x: -16 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="absolute -left-6 -top-6 bg-[#0b1012] border border-[#83c95b]/20 text-white rounded-2xl px-5 py-4.5 shadow-2xl max-w-[210px] hidden sm:block backdrop-blur-md"
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="absolute -left-4 md:-left-10 top-8 bg-secondary border-metallic rounded-2xl px-4 py-3 shadow-2xl max-w-[210px]"
           >
-            <p className="font-black text-xs uppercase tracking-wider text-[#83c95b] mb-1">Under 45 Minutes</p>
-            <p className="text-[#a8b0b8] text-[11px] leading-relaxed">Guaranteed dispatch for emergencies, day or night.</p>
+            <p className="text-accent font-bold text-xs uppercase tracking-wide mb-1">Under 45 Minutes</p>
+            <p className="text-text-muted text-xs leading-snug">Guaranteed dispatch for emergencies, day or night.</p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 16 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.75 }}
-            className="absolute -right-6 top-[55%] bg-[#0b1012] border border-[#EA580C]/20 rounded-2xl px-5 py-4.5 shadow-2xl max-w-[220px] hidden sm:block backdrop-blur-md"
+            transition={{ duration: 0.6, delay: 0.85 }}
+            className="absolute -right-3 md:-right-8 bottom-10 bg-secondary border border-copper/30 rounded-2xl px-4 py-3 shadow-2xl max-w-[220px]"
           >
-            <p className="text-[#EA580C] font-black text-xs uppercase tracking-wider mb-1">100% Cleanliness</p>
-            <p className="text-[#a8b0b8] text-[11px] leading-relaxed">Boot covers &amp; drop cloths every visit &mdash; or the job's free.</p>
+            <p className="text-copper font-bold text-xs uppercase tracking-wide mb-1">100% Cleanliness</p>
+            <p className="text-text-muted text-xs leading-snug">Boot covers &amp; drop cloths every visit &mdash; or the job's free.</p>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Ticker Tape Marquee */}
-      <div className="relative mt-16 md:mt-24 border-y border-white/5 bg-[#141b1e]/40 py-4.5 overflow-hidden">
-        <div className="absolute inset-0 bg-noise opacity-[0.02] pointer-events-none" />
+      {/* Marquee */}
+      <div className="relative mt-16 md:mt-24 border-y border-white/5 bg-secondary/40 py-4 overflow-hidden">
         <motion.div
-          className="flex whitespace-nowrap gap-12 text-xs md:text-sm font-extrabold uppercase tracking-widest"
+          className="flex whitespace-nowrap gap-10 text-sm md:text-base font-semibold uppercase tracking-wide"
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
         >
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
-            <span key={i} className="flex items-center gap-12 text-[#a8b0b8]">
+            <span key={i} className="flex items-center gap-10 text-text-muted">
               {item}
-              <span className="text-[#83c95b] font-bold">&bull;</span>
+              <span className="text-accent">&bull;</span>
             </span>
           ))}
         </motion.div>
