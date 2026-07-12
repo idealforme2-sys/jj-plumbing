@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { MapPin, CheckCircle2, XCircle, Phone } from "lucide-react";
-import { brand } from "../data/site";
+import { MapPin, CheckCircle2, XCircle } from "lucide-react";
 
 const CITIES = [
   "Oak Hollow", "Cedar Ridge", "Millbrook", "Riverside Park", "Highland Terrace",
@@ -21,41 +20,38 @@ export default function ServiceArea() {
   };
 
   return (
-    <section id="service-area" className="relative overflow-hidden py-20 md:py-28 bg-[#0b1012] text-white">
-      <div className="absolute inset-0 site-grid opacity-[0.08] pointer-events-none" />
-      <div className="absolute top-1/4 left-1/3 w-[300px] h-[300px] bg-[#83c95b]/5 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="relative z-10 mx-auto max-w-7xl px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-center">
-        
-        {/* Left Column: Local Neighborhoods Card */}
-        <div className="rounded-2xl border border-white/5 bg-[#141b1e]/90 p-8 shadow-xl">
-          <p className="font-extrabold text-xs md:text-sm uppercase tracking-[0.2rem] mb-3 text-[#83c95b]">Service Area</p>
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-5 font-heading text-white">Local techs, real neighborhoods.</h2>
-          <p className="text-[#a8b0b8] text-sm md:text-base mb-8 max-w-md leading-relaxed">
-            JJ Plumbing dispatches from a local base, keeping drive times short and emergency response times fast across all service neighborhoods.
+    <section id="service-area" className="relative overflow-hidden py-20 md:py-24 bg-[#0b1012]">
+      <div className="section-divider" />
+      <div className="absolute inset-0 site-grid opacity-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 h-full w-1/3 bg-[#83c95b] pointer-events-none [clip-path:polygon(0_0,70%_0,100%_100%,0_100%)]" />
+      <div className="relative max-w-7xl mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-12 items-start">
+        <div className="rounded-3xl border border-[#0b1012]/10 bg-[#f5f0e8] p-8 text-[#0b1012] shadow-2xl shadow-black/20">
+          <p className="font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-3 text-[#517d35]">Service Area</p>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-5 text-[#0b1012]">Local techs, real neighborhoods.</h2>
+          <p className="text-[#4f5a62] text-base md:text-lg mb-8 max-w-md">
+            JJ Plumbing dispatches from a single home base, which keeps drive times short and
+            response times fast across the metro.
           </p>
 
-          {/* Styled Neighborhood List */}
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-wrap gap-2.5 mb-10">
             {CITIES.map((c) => (
-              <span key={c} className="flex items-center gap-1.5 bg-white/[0.03] border border-white/5 rounded-full px-4 py-2 text-xs md:text-sm text-[#a8b0b8]">
-                <MapPin size={13} className="text-[#83c95b]" />
+              <span key={c} className="flex items-center gap-1.5 bg-white border border-[#0b1012]/10 rounded-full px-4 py-2 text-xs md:text-sm text-[#0b1012] shadow-lg shadow-black/5">
+                <MapPin size={13} className="text-[#517d35]" />
                 {c}
               </span>
             ))}
           </div>
         </div>
 
-        {/* Right Column: ZIP Code Checker Panel */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-white/5 bg-[#141b1e]/90 p-8 shadow-xl md:p-10"
+          transition={{ duration: 0.6 }}
+          className="rounded-3xl border border-white/10 bg-secondary p-8 shadow-2xl shadow-black/30 md:p-10"
         >
-          <h3 className="text-xl md:text-2xl font-bold mb-2 font-heading text-white">Check Your Zip Code</h3>
-          <p className="text-[#a8b0b8] text-sm mb-6 leading-relaxed">See if your home is inside our guaranteed fast-response radius.</p>
+          <h3 className="text-xl md:text-2xl font-bold mb-2">Check your zip code</h3>
+          <p className="text-text-muted text-sm mb-6">See if you're inside our fast-response radius.</p>
 
           <form onSubmit={(e) => { e.preventDefault(); checkZip(); }} className="flex flex-col gap-3 sm:flex-row">
             <input
@@ -68,13 +64,13 @@ export default function ServiceArea() {
                 setResult("idle");
               }}
               placeholder="Enter 5-digit zip"
-              className="min-w-0 flex-1 bg-black/40 border border-white/10 focus:border-[#83c95b]/60 rounded-xl px-5 py-3.5 text-sm md:text-base text-white placeholder:text-white/30 outline-none transition-colors"
+              className="min-w-0 flex-1 bg-primary border border-white/10 focus:border-accent/60 rounded-full px-5 py-3.5 text-sm md:text-base text-white placeholder:text-text-muted outline-none transition-colors"
             />
             <button
               type="submit"
-              className="bg-[#83c95b] hover:bg-[#97df6d] text-[#0b1012] font-black text-sm md:text-base px-6 py-3.5 rounded-xl transition-colors shrink-0 cursor-pointer shadow-md"
+              className="bg-accent text-primary font-bold text-sm md:text-base px-6 py-3.5 rounded-full hover:bg-accent-hover transition-colors shrink-0"
             >
-              Check Area
+              Check
             </button>
           </form>
 
@@ -82,35 +78,27 @@ export default function ServiceArea() {
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-2 mt-5 text-[#83c95b] text-sm font-bold"
+              className="flex items-center gap-2 mt-5 text-accent text-sm font-medium"
             >
-              <CheckCircle2 size={18} className="shrink-0" />
-              <span>You're in our fast-response zone &mdash; we can dispatch today.</span>
+              <CheckCircle2 size={18} />
+              You're in our fast-response zone &mdash; we can dispatch today.
             </motion.div>
           )}
           {result === "not-covered" && (
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex flex-col gap-3 mt-5 p-4 rounded-xl border border-dashed border-[#EA580C]/20 bg-[#EA580C]/5 text-white text-sm"
+              className="flex items-center gap-2 mt-5 text-copper text-sm font-medium"
             >
-              <div className="flex items-center gap-2 font-bold text-[#EA580C]">
-                <XCircle size={18} className="shrink-0" />
-                <span>Just outside our standard radius</span>
-              </div>
-              <p className="text-xs text-[#a8b0b8] leading-relaxed">
-                We still might be able to help you. Give our dispatch desk a quick call to check current technician availability.
-              </p>
-              <a
-                href={brand.phoneHref}
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#EA580C] text-white hover:bg-[#ff6d24] font-extrabold text-xs py-2 px-4 self-start shadow-sm transition-colors"
-              >
-                <Phone size={12} /> Call Dispatch
-              </a>
+              <XCircle size={18} />
+              Just outside our standard radius &mdash; call dispatch and we'll do our best.
             </motion.div>
           )}
         </motion.div>
       </div>
+      
+      {/* Sleek orange separator marking the end of the section */}
+      <div className="absolute inset-x-0 bottom-0 h-2 bg-copper" />
     </section>
   );
 }
